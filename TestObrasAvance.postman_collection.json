@@ -1,0 +1,1132 @@
+{
+	"info": {
+		"_postman_id": "baf3cfbf-5c23-4925-b47e-03cf71eafbb9",
+		"name": "TestObrasAvance",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22990173"
+	},
+	"item": [
+		{
+			"name": "CreateArtwork",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"5\",\r\n    \"name\": \"Obra1\",\r\n    \"identifier\": \"ABC123\",\r\n    \"desc\": \"DescripcionObra1\",\r\n    \"date_published\": \"30-08-22\",\r\n    \"date_painted\": \"25-08-22\",\r\n    \"enable\": true,\r\n    \"still_exists\": true,\r\n    \"superficeId\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ArtworkEndpoint}}",
+					"host": [
+						"{{ArtworkEndpoint}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetArtworkById",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"GetArtworkById\", function () {\r",
+							"    pm.expect(jsonData.id).to.eql(5);\r",
+							"    pm.expect(jsonData.name).to.eql(\"Obra1\");\r",
+							"    pm.expect(jsonData.desc).to.eql(\"DescripcionObra1\");\r",
+							"    pm.expect(jsonData.identifier).to.eql(\"ABC123\");\r",
+							"    pm.expect(jsonData.date_published).to.eql(\"30-08-22\");\r",
+							"    pm.expect(jsonData.date_painted).to.eql(\"25-08-22\");\r",
+							"    pm.expect(jsonData.enable).to.eql(true);\r",
+							"    pm.expect(jsonData.sill_exist).to.eql(true);\r",
+							"    pm.expect(jsonData.superficeId).to.eql(1);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{ArtworkEndpoint}}?id=5",
+					"host": [
+						"{{ArtworkEndpoint}}"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetNonExistentArtworkById",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{ArtworkEndpoint}}?id=99",
+					"host": [
+						"{{ArtworkEndpoint}}"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "99"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateArtworkDesc",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 5,\r\n    \"desc\": \"CambioDescripcionObra5\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ArtworkEndpoint}}",
+					"host": [
+						"{{ArtworkEndpoint}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateArtworkName",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 5,\r\n    \"name\": \"Obra55\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ArtworkEndpoint}}",
+					"host": [
+						"{{ArtworkEndpoint}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateArtworkIdentifier",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 5,\r\n    \"identifier\": \"ERT123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ArtworkEndpoint}}",
+					"host": [
+						"{{ArtworkEndpoint}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateArtworkDatePublished",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 5,\r\n    \"date_published\": \"30-08-22\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ArtworkEndpoint}}",
+					"host": [
+						"{{ArtworkEndpoint}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateArtworkEnable",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 5,\r\n    \"enable\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ArtworkEndpoint}}",
+					"host": [
+						"{{ArtworkEndpoint}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateArtworkDisable",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 5,\r\n    \"enable\": false\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ArtworkEndpoint}}",
+					"host": [
+						"{{ArtworkEndpoint}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateArtworkStillExist",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 5,\r\n    \"still_exist\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ArtworkEndpoint}}",
+					"host": [
+						"{{ArtworkEndpoint}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateArtworkNonExist",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 5,\r\n    \"still_exist\": false\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ArtworkEndpoint}}",
+					"host": [
+						"{{ArtworkEndpoint}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateArtworkSuperfice",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 5,\r\n    \"superficeId\": 6\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ArtworkEndpoint}}",
+					"host": [
+						"{{ArtworkEndpoint}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateNonExistentArtworkIdentifier",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 99,\r\n    \"identifier\": \"ERT123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ArtworkEndpoint}}",
+					"host": [
+						"{{ArtworkEndpoint}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateNonExistantArtworkName",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 99,\r\n    \"name\": \"Obra55\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ArtworkEndpoint}}",
+					"host": [
+						"{{ArtworkEndpoint}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateNonExistantArtworkDatePublished",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 99,\r\n    \"date_published\": \"30-08-22\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ArtworkEndpoint}}",
+					"host": [
+						"{{ArtworkEndpoint}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateNonExistantArtworkEnable",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 99,\r\n    \"enable\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ArtworkEndpoint}}",
+					"host": [
+						"{{ArtworkEndpoint}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateNonExistantArtworkDisable",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 99,\r\n    \"enable\": false\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ArtworkEndpoint}}",
+					"host": [
+						"{{ArtworkEndpoint}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateNonExistantArtworkStillExist",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 99,\r\n    \"still_exist\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ArtworkEndpoint}}",
+					"host": [
+						"{{ArtworkEndpoint}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateNonExistantArtworkNonExist",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 99,\r\n    \"still_exist\": false\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ArtworkEndpoint}}",
+					"host": [
+						"{{ArtworkEndpoint}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateNonExistantArtworkSuperfice",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 99,\r\n    \"superficeId\": 2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ArtworkEndpoint}}",
+					"host": [
+						"{{ArtworkEndpoint}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateArtworkWithoutDesc",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"6\",\r\n    \"name\": \"Obra2\",\r\n    \"identifier\": \"ABC124\",\r\n    \"date_published\": \"30-08-22\",\r\n    \"date_painted\": \"25-08-22\",\r\n    \"enable\": true,\r\n    \"still_exists\": true,\r\n    \"superficeId\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ArtworkEndpoint}}",
+					"host": [
+						"{{ArtworkEndpoint}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateNonExistentArtworkDesc",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 99,\r\n    \"desc\": \"DescripcionObra55\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ArtworkEndpoint}}",
+					"host": [
+						"{{ArtworkEndpoint}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateArtworkWithoutDatePainted",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"7\",\r\n    \"name\": \"Obra7\",\r\n    \"identifier\": \"ABC125\",\r\n    \"desc\": \"DescripcionObra7\",\r\n    \"date_published\":\"30-08-22\",\r\n    \"enable\":true,\r\n    \"still_exists\":true,\r\n    \"superficeId\":2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ArtworkEndpoint}}",
+					"host": [
+						"{{ArtworkEndpoint}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateArtworkFutureDatePainted",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"8\",\r\n    \"name\": \"Obra8\",\r\n    \"identifier\": \"ABC123\",\r\n    \"desc\": \"Descripcion\",\r\n    \"date_published\": \"30-08-22\",\r\n    \"date_painted\": \"25-08-25\",\r\n    \"enable\": true,\r\n    \"still_exists\": true,\r\n    \"superficeId\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ArtworkEndpoint}}",
+					"host": [
+						"{{ArtworkEndpoint}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateArtworkWithoutDatePublished",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"10\",\r\n    \"name\": \"Obra10\",\r\n    \"identifier\": \"ABC214\",\r\n    \"date_painted\": \"25-08-22\",\r\n    \"enable\": true,\r\n    \"still_exists\": true,\r\n    \"superficeId\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ArtworkEndpoint}}",
+					"host": [
+						"{{ArtworkEndpoint}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateArtworkFutureDatePublished",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"11\",\r\n    \"name\": \"Obra11\",\r\n    \"identifier\": \"ABC123\",\r\n    \"desc\": \"Descripcion\",\r\n    \"date_published\": \"30-08-25\",\r\n    \"date_painted\": \"25-08-25\",\r\n    \"enable\": true,\r\n    \"still_exists\": true,\r\n    \"superficeId\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ArtworkEndpoint}}",
+					"host": [
+						"{{ArtworkEndpoint}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateArtworkWithoutSuperfice",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"12\",\r\n    \"name\": \"Obra12\",\r\n    \"identifier\": \"ABC456\",\r\n    \"desc\": \"Descripcion\",\r\n    \"date_published\": \"30-08-22\",\r\n    \"date_painted\": \"25-08-22\",\r\n    \"enable\": true,\r\n    \"still_exists\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ArtworkEndpoint}}",
+					"host": [
+						"{{ArtworkEndpoint}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateArtworkDisable",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"13\",\r\n    \"name\": \"Obra13\",\r\n    \"identifier\": \"ABC123\",\r\n    \"desc\": \"Descripcion\",\r\n    \"date_published\": \"30-08-22\",\r\n    \"date_painted\": \"25-08-22\",\r\n    \"enable\": false,\r\n    \"still_exists\": true,\r\n    \"superficeId\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ArtworkEndpoint}}",
+					"host": [
+						"{{ArtworkEndpoint}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateNonExistantArtwork",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"14\",\r\n    \"name\": \"Obra14\",\r\n    \"identifier\": \"ABC123\",\r\n    \"desc\": \"Descripcion\",\r\n    \"date_published\": \"30-08-22\",\r\n    \"date_painted\": \"25-08-22\",\r\n    \"enable\": true,\r\n    \"still_exists\": false,\r\n    \"superficeId\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ArtworkEndpoint}}",
+					"host": [
+						"{{ArtworkEndpoint}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateDuplicateArtwork",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"5\",\r\n    \"name\": \"Obra1\",\r\n    \"identifier\": \"ABC123\",\r\n    \"desc\": \"Descripcion\",\r\n    \"date_published\": \"30-08-22\",\r\n    \"date_painted\": \"25-08-22\",\r\n    \"enable\": true,\r\n    \"still_exists\": true,\r\n    \"superficeId\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{ArtworkEndpoint}}",
+					"host": [
+						"{{ArtworkEndpoint}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
