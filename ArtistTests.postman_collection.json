@@ -1,0 +1,222 @@
+{
+	"info": {
+		"_postman_id": "a1b5dfe4-477b-42ac-b9be-7c723e12e281",
+		"name": "ArtistTests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24163440"
+	},
+	"item": [
+		{
+			"name": "CreateArtist",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"juanito\",\r\n    \"surname\": \"Pérez\",\r\n    \"birthdate\": null,\r\n    \"bio\": \"biografía\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://streetart-backend-dev.azurewebsites.net/artist",
+					"protocol": "https",
+					"host": [
+						"streetart-backend-dev",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"artist"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateArtistWithNullName",
+			"request": {
+				"method": "POST",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "CreateArtistWithNullSurname",
+			"request": {
+				"method": "POST",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "CreateArtistWithNullBirthdate Copy",
+			"request": {
+				"method": "POST",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "CreateArtistWithNullBio",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Jhon\",\r\n    \"surname\": \"Doe\",\r\n    \"birthdate\": null,\r\n    \"bio\": null\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateArtistWithEmptyName",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://streetart-backend-dev.azurewebsites.net/artist",
+					"protocol": "https",
+					"host": [
+						"streetart-backend-dev",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"artist"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetArtistById",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://streetart-backend-dev.azurewebsites.net/artist/1",
+					"protocol": "https",
+					"host": [
+						"streetart-backend-dev",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"artist",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetNonexistentArtistById",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "GetNonexistentArtistById",
+					"host": [
+						"GetNonexistentArtistById"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "EditNonexistentArtist",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "EditArtistName",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"nombreNuevo\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://streetart-backend-dev.azurewebsites.net/artist/6",
+					"protocol": "https",
+					"host": [
+						"streetart-backend-dev",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"artist",
+						"6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "EditArtistWithNullName",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": null,\r\n    \"surname\": \"Pérez\",\r\n    \"birthdate\": null,\r\n    \"bio\": \"hola que tal\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://streetart-backend-dev.azurewebsites.net/artist/3",
+					"protocol": "https",
+					"host": [
+						"streetart-backend-dev",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"artist",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "EditArtistWithNullSurname",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}
