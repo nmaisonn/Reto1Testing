@@ -1,0 +1,198 @@
+{
+	"info": {
+		"_postman_id": "cafbb4fe-48f6-4470-abd5-b0b926568541",
+		"name": "ArtworkSurface",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24802326"
+	},
+	"item": [
+		{
+			"name": "Create",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"AS1\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://streetart-backend-dev.azurewebsites.net/artworksurface",
+					"protocol": "https",
+					"host": [
+						"streetart-backend-dev",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"artworksurface"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create, without \"name\"",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://streetart-backend-dev.azurewebsites.net/artworksurface",
+					"protocol": "https",
+					"host": [
+						"streetart-backend-dev",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"artworksurface"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create, duplicate",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"AS1\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Returns an array of ArtworkSurfaces\", function () {",
+							"    const response = pm.response.json();",
+							"",
+							"    pm.expect(Array.isArray(response)).to.be.true;",
+							"",
+							"    for (const as of response) {",
+							"        pm.expect(typeof(as.name)).to.eql(\"string\");",
+							"    }",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://streetart-backend-dev.azurewebsites.net/artworksurface",
+					"protocol": "https",
+					"host": [
+						"streetart-backend-dev",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"artworksurface"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get, by id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"",
+							"    const response = pm.response.json();",
+							"",
+							"    pm.expect(typeof(response.name)).to.eql(\"string\");",
+							"});",
+							"",
+							"pm.test(\"Returns an ArtworkSurface\", function () {",
+							"    const response = pm.response.json();",
+							"",
+							"    pm.expect(typeof(response.name)).to.eql(\"string\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://streetart-backend-dev.azurewebsites.net/artworksurface/1",
+					"protocol": "https",
+					"host": [
+						"streetart-backend-dev",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"artworksurface",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
