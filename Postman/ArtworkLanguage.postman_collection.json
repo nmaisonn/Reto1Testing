@@ -19,6 +19,18 @@
 						],
 						"type": "text/javascript"
 					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"const uuid = require('uuid');",
+							"",
+							"pm.globals.set(\"artwork-language-name\", \"AL-\" + uuid.v4());",
+							""
+						],
+						"type": "text/javascript"
+					}
 				}
 			],
 			"request": {
@@ -26,7 +38,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"name\": \"AS1\"\n}\n",
+					"raw": "{\n    \"name\": \"{{artwork-language-name}}\"\n}\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -34,15 +46,66 @@
 					}
 				},
 				"url": {
-					"raw": "https://streetart-backend-dev.azurewebsites.net/artworksurface",
+					"raw": "https://street-art-api-dev.azurewebsites.net/artwork-language",
 					"protocol": "https",
 					"host": [
-						"streetart-backend-dev",
+						"street-art-api-dev",
 						"azurewebsites",
 						"net"
 					],
 					"path": [
-						"artworksurface"
+						"artwork-language"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create, duplicate",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {",
+							"    pm.response.to.have.status(400);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"{{artwork-language-name}}\",\n    \"themes\": []\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://street-art-api-dev.azurewebsites.net/artwork-language",
+					"protocol": "https",
+					"host": [
+						"street-art-api-dev",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"artwork-language"
 					]
 				}
 			},
@@ -76,23 +139,32 @@
 					}
 				},
 				"url": {
-					"raw": "https://streetart-backend-dev.azurewebsites.net/artworklanguage",
+					"raw": "https://street-art-api-dev.azurewebsites.net/artwork-language",
 					"protocol": "https",
 					"host": [
-						"streetart-backend-dev",
+						"street-art-api-dev",
 						"azurewebsites",
 						"net"
 					],
 					"path": [
-						"artworklanguage"
+						"artwork-language"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Get",
+			"name": "Get created",
 			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
 				{
 					"listen": "test",
 					"script": {
@@ -101,14 +173,15 @@
 							"    pm.response.to.have.status(200);",
 							"});",
 							"",
-							"pm.test(\"Body is an array with ArtworkSurfaces\", function () {",
+							"pm.test(\"Contains created resource\", function () {",
 							"    const response = pm.response.json();",
+							"    const name = pm.globals.get('artwork-language-name');",
 							"",
-							"    pm.expect(Array.isArray(response)).to.be.true;",
+							"    const index = response.findIndex(x => x.name === name);",
 							"",
-							"    for (const as of response) {",
-							"        pm.expect(typeof(as.name)).to.eql(\"string\");",
-							"    }",
+							"    pm.expect(index).to.not.eql(-1);",
+							"    ",
+							"    pm.globals.set('artwork-language-id', response[index].id);",
 							"});"
 						],
 						"type": "text/javascript"
@@ -119,15 +192,15 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://streetart-backend-dev.azurewebsites.net/artworklanguage",
+					"raw": "https://street-art-api-dev.azurewebsites.net/artwork-language",
 					"protocol": "https",
 					"host": [
-						"streetart-backend-dev",
+						"street-art-api-dev",
 						"azurewebsites",
 						"net"
 					],
 					"path": [
-						"artworklanguage"
+						"artwork-language"
 					]
 				}
 			},
@@ -148,10 +221,11 @@
 							"    pm.expect(typeof(response.name)).to.eql(\"string\");",
 							"});",
 							"",
-							"pm.test(\"Returns an ArtworkLanguage\", function () {",
+							"pm.test(\"Returns the expected ArtworkLanguage\", function () {",
 							"    const response = pm.response.json();",
 							"",
-							"    pm.expect(typeof(response.name)).to.eql(\"string\");",
+							"    pm.expect(response.id).to.eql(pm.globals.get(\"artwork-language-id\"));",
+							"    pm.expect(response.name).to.eql(pm.globals.get(\"artwork-language-name\"));",
 							"});"
 						],
 						"type": "text/javascript"
@@ -162,16 +236,16 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://streetart-backend-dev.azurewebsites.net/artworklanguage/1",
+					"raw": "https://street-art-api-dev.azurewebsites.net/artwork-language/{{artwork-language-id}}",
 					"protocol": "https",
 					"host": [
-						"streetart-backend-dev",
+						"street-art-api-dev",
 						"azurewebsites",
 						"net"
 					],
 					"path": [
-						"artworklanguage",
-						"1"
+						"artwork-language",
+						"{{artwork-language-id}}"
 					]
 				}
 			},
@@ -180,8 +254,158 @@
 		{
 			"name": "Modify",
 			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"{{artwork-language-name}}-NEW\",\n    \"themes\": []\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://street-art-api-dev.azurewebsites.net/artwork-language/{{artwork-language-id}}",
+					"protocol": "https",
+					"host": [
+						"street-art-api-dev",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"artwork-language",
+						"{{artwork-language-id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get modified",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Contains modified resource\", function () {",
+							"    const response = pm.response.json();",
+							"    ",
+							"    pm.expect(response.name).to.be.eql(pm.globals.get('artwork-language-name') + '-NEW');",
+							"    pm.expect(response.id).to.be.eql(pm.globals.get('artwork-language-id'));",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": {
+					"raw": "https://street-art-api-dev.azurewebsites.net/artwork-language/{{artwork-language-id}}",
+					"protocol": "https",
+					"host": [
+						"street-art-api-dev",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"artwork-language",
+						"{{artwork-language-id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://street-art-api-dev.azurewebsites.net/artwork-language/{{artwork-language-id}}",
+					"protocol": "https",
+					"host": [
+						"street-art-api-dev",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"artwork-language",
+						"{{artwork-language-id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get missing",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://street-art-api-dev.azurewebsites.net/artwork-language/{{artwork-language-id}}",
+					"protocol": "https",
+					"host": [
+						"street-art-api-dev",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"artwork-language",
+						"{{artwork-language-id}}"
+					]
+				}
 			},
 			"response": []
 		}
