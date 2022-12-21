@@ -88,6 +88,64 @@
 			"response": []
 		},
 		{
+			"name": "CreateArtistWithNullCrew",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"John\",\r\n    \"surname\": \"Doe\",\r\n    \"bio\": \"esta bio puede estar vacÃ­a\",\r\n    \"crews\": null\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://street-art-api-dev.azurewebsites.net/artist",
+					"protocol": "https",
+					"host": [
+						"street-art-api-dev",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"artist"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateArtistWithNullPhoto",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"John\",\r\n    \"surname\": \"Doe\",\r\n    \"bio\": \"esta bio puede estar vacÃ­a\",\r\n    \"crews\": null\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://street-art-api-dev.azurewebsites.net/artist",
+					"protocol": "https",
+					"host": [
+						"street-art-api-dev",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"artist"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "CreateArtistWithEmptyName",
 			"request": {
 				"method": "POST",
@@ -102,6 +160,113 @@
 					],
 					"path": [
 						"artist"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateArtistWithEmptySurname",
+			"request": {
+				"method": "POST",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "CreateArtistWithEmptyBirthdate",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Jhon\",\r\n    \"surname\": \"Doe\",\r\n    \"birthdate\": \"\",\r\n    \"bio\": \"test\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://streetart-backend-dev.azurewebsites.net/artist",
+					"protocol": "https",
+					"host": [
+						"streetart-backend-dev",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"artist"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateArtistWithEmptyCrew",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"John\",\r\n    \"surname\": \"Doe\",\r\n    \"bio\": \"esta bio puede estar vacÃ­a\",\r\n    \"crews\":[]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://street-art-api-dev.azurewebsites.net/artist",
+					"protocol": "https",
+					"host": [
+						"street-art-api-dev",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"artist"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateNullObject",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://street-art-api-dev.azurewebsites.net/artist",
+					"protocol": "https",
+					"host": [
+						"street-art-api-dev",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"artist"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetArtist",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://streetart-backend-dev.azurewebsites.net/artist/1",
+					"protocol": "https",
+					"host": [
+						"streetart-backend-dev",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"artist",
+						"1"
 					]
 				}
 			},
@@ -144,9 +309,35 @@
 		},
 		{
 			"name": "EditNonexistentArtist",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
-				"method": "GET",
-				"header": []
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "https://streetart-backend-dev.azurewebsites.net/artist/20000",
+					"protocol": "https",
+					"host": [
+						"streetart-backend-dev",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"artist",
+						"20000"
+					]
+				}
 			},
 			"response": []
 		},
@@ -213,8 +404,17 @@
 		{
 			"name": "EditArtistWithNullSurname",
 			"request": {
-				"method": "GET",
-				"header": []
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				}
 			},
 			"response": []
 		}
