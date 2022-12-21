@@ -1,0 +1,465 @@
+{
+	"info": {
+		"_postman_id": "cd0c0d3a-a57f-40a5-b9a5-13f5243e5cd7",
+		"name": "TestArtWorkTecnique",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "createArtWorkTecnique",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function(){\r",
+							"    pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 16,\r\n    \"name\": \"PRUEBA\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/artwork-technique",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"artwork-technique"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createDuplicateArtWorkTecnique",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function(){\r",
+							"    pm.response.to.have.status(400);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 25,\r\n    \"name\": \"PRUEBA\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/artwork-technique",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"artwork-technique"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createEmptyArtWorkTecnique1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function(){\r",
+							"    pm.response.to.have.status(400);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"\",\r\n    \"name\": \"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/artwork-technique",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"artwork-technique"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createEmptyArtWorkTecnique2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function(){\r",
+							"    pm.response.to.have.status(400);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": null,\r\n    \"name\": null\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/artwork-technique",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"artwork-technique"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createEmptyArtWorkTecnique3",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function(){\r",
+							"    pm.response.to.have.status(400);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/artwork-technique",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"artwork-technique"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getArtWorkTecniqueById",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"GET ArtWorkTecnique\"), function(){\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.id).to.eq(1);\r",
+							"    pm.expect(jsonData.name).to.eq(\"nombre1\");\r",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/artwork-technique/1",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"artwork-technique",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getNonExistentArtWorkTecniqueById",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function(){\r",
+							"    pm.response.to.have.status(404);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/artwork-technique/0",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"artwork-technique",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getArtWorkTecnique",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Returns an array of ArtworkSurfaces\", function () {\r",
+							"    const response = pm.response.json();\r",
+							"\r",
+							"    pm.expect(Array.isArray(response)).to.be.true;\r",
+							"\r",
+							"    for (const as of response) {\r",
+							"        pm.expect(typeof(as.id)).to.eql(\"number\");\r",
+							"        pm.expect(typeof(as.name)).to.eql(\"string\");\r",
+							"    }\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/artwork-technique",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"artwork-technique"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "modifyNameArtWorkTecnique",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 1,\r\n    \"bio\": \"NUEVO\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/artwork-technique",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"artwork-technique"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getModifyNameArtWorkTecnique",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"GET crew\"), function(){\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.id).to.eq(1);\r",
+							"    pm.expect(jsonData.name).to.eq(\"NUEVO\");\r",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/artwork-technique/1",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"artwork-technique",
+						"1"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteArtWorkTechnique",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/artwork-technique/5",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"artwork-technique",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteNonExistentArtWorkTechnique",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function(){\r",
+							"    pm.response.to.have.status(400);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/artwork-technique/5",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"artwork-technique",
+						"5"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
