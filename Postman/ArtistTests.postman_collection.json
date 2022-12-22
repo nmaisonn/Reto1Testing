@@ -8,12 +8,35 @@
 	"item": [
 		{
 			"name": "CreateArtist",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"/* var jsonData = pm.response.json(); */\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"/* pm.test(\"GetArtistById\", function () {\r",
+							"    pm.expect(jsonData.name).to.eql(\"Jhon\");\r",
+							"    pm.expect(jsonData.surname).to.eql(\"Doe\");\r",
+							"    pm.expect(jsonData.birthdate).to.eql(null);\r",
+							"    pm.expect(jsonData.bio).to.eql(\"test\");\r",
+							"}); */\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"juanito\",\r\n    \"surname\": \"Pérez\",\r\n    \"birthdate\": null,\r\n    \"bio\": \"biografía\"\r\n}",
+					"raw": "{\r\n    \"id\": 100,\r\n    \"name\": \"Carreta\",\r\n    \"surname\": \"Rodriguez\",\r\n    \"artistPhoto\": null,\r\n    \"birthdate\": \"2022-12-22\",\r\n    \"bio\": \"Es una carreta\",\r\n    \"code\": \"RR&K\",\r\n    \"crews\": null\r\n}\r\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -21,10 +44,10 @@
 					}
 				},
 				"url": {
-					"raw": "https://streetart-backend-dev.azurewebsites.net/artist",
+					"raw": "https://street-art-api-dev.azurewebsites.net/artist",
 					"protocol": "https",
 					"host": [
-						"streetart-backend-dev",
+						"street-art-api-dev",
 						"azurewebsites",
 						"net"
 					],
@@ -37,25 +60,136 @@
 		},
 		{
 			"name": "CreateArtistWithNullName",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
-				"header": []
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": null,\r\n    \"surname\": \"Doe\",\r\n    \"bio\": \"esta bio puede estar vacÃ­a\",\r\n    \"birthdate\": \"2000-05-06\",\r\n    \"crews\":[\r\n        {\r\n            \"id\":1,\r\n            \"name\":\"crew1\"\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://street-art-api-dev.azurewebsites.net/artist",
+					"protocol": "https",
+					"host": [
+						"street-art-api-dev",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"artist"
+					]
+				}
 			},
 			"response": []
 		},
 		{
 			"name": "CreateArtistWithNullSurname",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
-				"header": []
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"John\",\r\n    \"surname\": null,\r\n    \"bio\": \"esta bio puede estar vacÃ­a\",\r\n    \"birthdate\": \"2000-05-06\",\r\n    \"crews\":[\r\n        {\r\n            \"id\":1,\r\n            \"name\":\"crew1\"\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://street-art-api-dev.azurewebsites.net/artist",
+					"protocol": "https",
+					"host": [
+						"street-art-api-dev",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"artist"
+					]
+				}
 			},
 			"response": []
 		},
 		{
 			"name": "CreateArtistWithNullBirthdate Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//var jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"/* pm.test(\"GetArtistById\", function () {\r",
+							"    pm.expect(jsonData.name).to.eql(\"Jhon\");\r",
+							"    pm.expect(jsonData.surname).to.eql(\"Doe\");\r",
+							"    pm.expect(jsonData.birthdate).to.eql(null);\r",
+							"    pm.expect(jsonData.bio).to.eql(\"test\");\r",
+							"}); */"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
-				"header": []
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"John\",\r\n    \"surname\": \"Doe\",\r\n    \"bio\": \"esta bio puede estar vacÃ­a\",\r\n    \"birthdate\": null,\r\n    \"crews\":[\r\n        {\r\n            \"id\":1,\r\n            \"name\":\"crew1\"\r\n        },\r\n        {\r\n            \"id\":2,\r\n            \"name\":\"crew2\",\r\n            \"from\":\"2020-10-30\"\r\n        }\r\n    ]\r\n}\r\n//Este test quedó obsoleto porque la fecha de nacimiento fue removida de artista",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://street-art-api-dev.azurewebsites.net/artist",
+					"protocol": "https",
+					"host": [
+						"street-art-api-dev",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"artist"
+					]
+				}
 			},
 			"response": []
 		},
@@ -66,6 +200,60 @@
 					"listen": "test",
 					"script": {
 						"exec": [
+							"//var jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"/* pm.test(\"GetArtistById\", function () {\r",
+							"    pm.expect(jsonData.name).to.eql(\"Jhon\");\r",
+							"    pm.expect(jsonData.surname).to.eql(\"Doe\");\r",
+							"    pm.expect(jsonData.birthdate).to.eql(null);\r",
+							"    pm.expect(jsonData.bio).to.eql(null);\r",
+							"}); */"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"John\",\r\n    \"surname\": \"Doe\",\r\n    \"bio\": null,\r\n    \"birthdate\": \"2000-05-06\",\r\n    \"crews\":[\r\n        {\r\n            \"id\":1,\r\n            \"name\":\"crew1\"\r\n        },\r\n        {\r\n            \"id\":2,\r\n            \"name\":\"crew2\",\r\n            \"from\":\"2020-10-30\"\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://street-art-api-dev.azurewebsites.net/artist",
+					"protocol": "https",
+					"host": [
+						"street-art-api-dev",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"artist"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateArtistWithNullCrew",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
 							""
 						],
 						"type": "text/javascript"
@@ -77,24 +265,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"Jhon\",\r\n    \"surname\": \"Doe\",\r\n    \"birthdate\": null,\r\n    \"bio\": null\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "CreateArtistWithNullCrew",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"John\",\r\n    \"surname\": \"Doe\",\r\n    \"bio\": \"esta bio puede estar vacÃ­a\",\r\n    \"crews\": null\r\n}",
+					"raw": "{\r\n    \"name\": \"John\",\r\n    \"surname\": \"Doe\",\r\n    \"bio\": \"esta bio puede estar vacÃ­a\",\r\n    \"birthdate\": \"2000-05-06\",\r\n    \"crews\": null\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -118,12 +289,26 @@
 		},
 		{
 			"name": "CreateArtistWithNullPhoto",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"John\",\r\n    \"surname\": \"Doe\",\r\n    \"bio\": \"esta bio puede estar vacÃ­a\",\r\n    \"crews\": null\r\n}",
+					"raw": "{\r\n    \"name\": \"John\",\r\n    \"surname\": \"Doe\",\r\n    \"artistPhoto\": null,\r\n    \"bio\": \"esta bio puede estar vacÃ­a\",\r\n    \"birthdate\": \"2000-05-06\",\r\n    \"crews\":[\r\n        {\r\n            \"id\":1,\r\n            \"name\":\"crew1\"\r\n        }\r\n    ]\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -147,14 +332,36 @@
 		},
 		{
 			"name": "CreateArtistWithEmptyName",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"\",\r\n    \"surname\": \"Doe\",\r\n    \"bio\": \"esta bio puede estar vacÃ­a\",\r\n    \"birthdate\": \"2000-05-06\",\r\n    \"crews\":[\r\n        {\r\n            \"id\":1,\r\n            \"name\":\"crew1\"\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": "https://streetart-backend-dev.azurewebsites.net/artist",
+					"raw": "https://street-art-api-dev.azurewebsites.net/artist",
 					"protocol": "https",
 					"host": [
-						"streetart-backend-dev",
+						"street-art-api-dev",
 						"azurewebsites",
 						"net"
 					],
@@ -167,20 +374,34 @@
 		},
 		{
 			"name": "CreateArtistWithEmptySurname",
-			"request": {
-				"method": "POST",
-				"header": []
-			},
-			"response": []
-		},
-		{
-			"name": "CreateArtistWithEmptyBirthdate",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"Jhon\",\r\n    \"surname\": \"Doe\",\r\n    \"birthdate\": \"\",\r\n    \"bio\": \"test\"\r\n}",
+					"raw": "{\r\n    \"name\": \"John\",\r\n    \"surname\": \"\",\r\n    \"bio\": \"esta bio puede estar vacÃ­a\",\r\n    \"birthdate\": \"2000-05-06\",\r\n    \"crews\":[\r\n        {\r\n            \"id\":1,\r\n            \"name\":\"crew1\"\r\n        }\r\n    ]\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -188,10 +409,52 @@
 					}
 				},
 				"url": {
-					"raw": "https://streetart-backend-dev.azurewebsites.net/artist",
+					"raw": "https://street-art-api-dev.azurewebsites.net/artist",
 					"protocol": "https",
 					"host": [
-						"streetart-backend-dev",
+						"street-art-api-dev",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"artist"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateArtistWithEmptyBirthdate",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Jhon\",\r\n    \"surname\": \"Doe\",\r\n    \"bio\": \"esta bio puede estar vacÃ­a\",\r\n    \"birthdate\": \"\",\r\n    \"crews\":[\r\n        {\r\n            \"id\":1,\r\n            \"name\":\"crew1\"\r\n        }\r\n    ]\r\n}\r\n\r\n//Este test quedó obsoleto porque la fecha de nacimiento fue removida de artista",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://street-art-api-dev.azurewebsites.net/artist",
+					"protocol": "https",
+					"host": [
+						"street-art-api-dev",
 						"azurewebsites",
 						"net"
 					],
@@ -204,12 +467,26 @@
 		},
 		{
 			"name": "CreateArtistWithEmptyCrew",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"John\",\r\n    \"surname\": \"Doe\",\r\n    \"bio\": \"esta bio puede estar vacÃ­a\",\r\n    \"crews\":[]\r\n}",
+					"raw": "{\r\n    \"name\": \"John\",\r\n    \"surname\": \"Doe\",\r\n    \"bio\": \"esta bio puede estar vacÃ­a\",\r\n    \"birthdate\": \"2000-05-06\",\r\n    \"crews\":[]\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -275,20 +552,56 @@
 		},
 		{
 			"name": "GetArtist",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Returns an array of Artists\", function () {\r",
+							"    const response = pm.response.json();\r",
+							"\r",
+							"    pm.expect(Array.isArray(response)).to.be.true;\r",
+							"\r",
+							"    for (i = 0; i < response.length; i++) {\r",
+							"        pm.expect(typeof(response[i].id)).to.eql(\"number\");\r",
+							"        pm.expect(typeof(response[i].name)).to.eql(\"string\");\r",
+							"        pm.expect(typeof(response[i].surname)).to.eql(\"string\");\r",
+							"    }\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
 			"request": {
 				"method": "GET",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": "https://streetart-backend-dev.azurewebsites.net/artist/1",
+					"raw": "https://street-art-api-dev.azurewebsites.net/artist",
 					"protocol": "https",
 					"host": [
-						"streetart-backend-dev",
+						"street-art-api-dev",
 						"azurewebsites",
 						"net"
 					],
 					"path": [
-						"artist",
-						"1"
+						"artist"
 					]
 				}
 			},
@@ -296,14 +609,40 @@
 		},
 		{
 			"name": "GetArtistById",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Returns an Artist\", function () {\r",
+							"    const response = pm.response.json();\r",
+							"\r",
+							"    pm.expect(typeof(response.id)).to.eql(\"number\");\r",
+							"    pm.expect(typeof(response.name)).to.eql(\"string\");\r",
+							"    pm.expect(typeof(response.surname)).to.eql(\"string\");\r",
+							"    pm.expect(typeof(response.artistPhoto)).to.eql(\"string\" || null);\r",
+							"    pm.expect(typeof(response.birthdate)).to.eql(\"string\" || null);\r",
+							"    pm.expect(typeof(response.bio)).to.eql(\"string\" || null);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://streetart-backend-dev.azurewebsites.net/artist/1",
+					"raw": "https://street-art-api-dev.azurewebsites.net/artist/1",
 					"protocol": "https",
 					"host": [
-						"streetart-backend-dev",
+						"street-art-api-dev",
 						"azurewebsites",
 						"net"
 					],
@@ -317,13 +656,33 @@
 		},
 		{
 			"name": "GetNonexistentArtistById",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "GetNonexistentArtistById",
+					"raw": "https://street-art-api-dev.azurewebsites.net/artist/1000000",
+					"protocol": "https",
 					"host": [
-						"GetNonexistentArtistById"
+						"street-art-api-dev",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"artist",
+						"1000000"
 					]
 				}
 			},
@@ -347,6 +706,15 @@
 			"request": {
 				"method": "PUT",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"nombreNuevo\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
 					"raw": "https://streetart-backend-dev.azurewebsites.net/artist/20000",
 					"protocol": "https",
@@ -365,6 +733,20 @@
 		},
 		{
 			"name": "EditArtistName",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "PUT",
 				"header": [],
@@ -395,12 +777,29 @@
 		},
 		{
 			"name": "EditArtistWithNullName",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
 			"request": {
-				"method": "PUT",
+				"method": "GET",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\": null,\r\n    \"surname\": \"Pérez\",\r\n    \"birthdate\": null,\r\n    \"bio\": \"hola que tal\"\r\n}",
+					"raw": "{\r\n    \"name\": null\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -408,7 +807,7 @@
 					}
 				},
 				"url": {
-					"raw": "https://streetart-backend-dev.azurewebsites.net/artist/3",
+					"raw": "https://streetart-backend-dev.azurewebsites.net/artist/5",
 					"protocol": "https",
 					"host": [
 						"streetart-backend-dev",
@@ -417,7 +816,7 @@
 					],
 					"path": [
 						"artist",
-						"3"
+						"5"
 					]
 				}
 			},
@@ -425,17 +824,44 @@
 		},
 		{
 			"name": "EditArtistWithNullSurname",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "PUT",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "",
+					"raw": "{\r\n    \"surname\": null\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
 						}
 					}
+				},
+				"url": {
+					"raw": "https://streetart-backend-dev.azurewebsites.net/artist/5",
+					"protocol": "https",
+					"host": [
+						"streetart-backend-dev",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"artist",
+						"5"
+					]
 				}
 			},
 			"response": []

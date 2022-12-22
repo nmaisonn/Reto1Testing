@@ -48,12 +48,12 @@
 						{
 							"key": "file",
 							"type": "file",
-							"src": "/C:/Users/juanm/Downloads/artists.csv"
+							"src": "/C:/Users/juanm/Downloads/artworks.csv"
 						}
 					]
 				},
 				"url": {
-					"raw": "https://street-art-api-dev.azurewebsites.net/author/upload",
+					"raw": "https://street-art-api-dev.azurewebsites.net/artwork/upload",
 					"protocol": "https",
 					"host": [
 						"street-art-api-dev",
@@ -61,7 +61,7 @@
 						"net"
 					],
 					"path": [
-						"author",
+						"artwork",
 						"upload"
 					]
 				}
