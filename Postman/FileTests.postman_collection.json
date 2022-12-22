@@ -1,0 +1,72 @@
+{
+	"info": {
+		"_postman_id": "3c7a7330-70f5-4828-8b7c-fef7ceda7e4d",
+		"name": "FileTests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24163440"
+	},
+	"item": [
+		{
+			"name": "CreateMassiveAmountOfArtists",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/C:/Users/juanm/Downloads/artists.csv"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://street-art-api-dev.azurewebsites.net/author/upload",
+					"protocol": "https",
+					"host": [
+						"street-art-api-dev",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"author",
+						"upload"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateMassiveAmountOfArtworks",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/C:/Users/juanm/Downloads/artists.csv"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://street-art-api-dev.azurewebsites.net/author/upload",
+					"protocol": "https",
+					"host": [
+						"street-art-api-dev",
+						"azurewebsites",
+						"net"
+					],
+					"path": [
+						"author",
+						"upload"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
