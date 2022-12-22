@@ -25,7 +25,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"id\": 1,\r\n    \"name\": \"nombre1\"\r\n}",
+					"raw": "{\r\n    \"id\": 16,\r\n    \"name\": \"PRUEBA\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -33,12 +33,12 @@
 					}
 				},
 				"url": {
-					"raw": "{{host}}/ArtWorkTecnique",
+					"raw": "{{host}}/artwork-technique",
 					"host": [
 						"{{host}}"
 					],
 					"path": [
-						"ArtWorkTecnique"
+						"artwork-technique"
 					]
 				}
 			},
@@ -46,6 +46,45 @@
 		},
 		{
 			"name": "createDuplicateArtWorkTecnique",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function(){\r",
+							"    pm.response.to.have.status(400);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 25,\r\n    \"name\": \"PRUEBA\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/artwork-technique",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"artwork-technique"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createEmptyArtWorkTecnique1",
 			"event": [
 				{
 					"listen": "test",
@@ -72,19 +111,19 @@
 					}
 				},
 				"url": {
-					"raw": "{{host}}/ArtWorkTecnique",
+					"raw": "{{host}}/artwork-technique",
 					"host": [
 						"{{host}}"
 					],
 					"path": [
-						"ArtWorkTecnique"
+						"artwork-technique"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "createEmptyArtWorkTecnique1",
+			"name": "createEmptyArtWorkTecnique2",
 			"event": [
 				{
 					"listen": "test",
@@ -103,7 +142,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"id\": 1,\r\n    \"name\": \"nombre1\"\r\n}",
+					"raw": "{\r\n    \"id\": null,\r\n    \"name\": null\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -111,19 +150,19 @@
 					}
 				},
 				"url": {
-					"raw": "{{host}}/ArtWorkTecnique",
+					"raw": "{{host}}/artwork-technique",
 					"host": [
 						"{{host}}"
 					],
 					"path": [
-						"ArtWorkTecnique"
+						"artwork-technique"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "createEmptyArtWorkTecnique2",
+			"name": "createEmptyArtWorkTecnique3",
 			"event": [
 				{
 					"listen": "test",
@@ -150,51 +189,12 @@
 					}
 				},
 				"url": {
-					"raw": "{{host}}/ArtWorkTecnique",
+					"raw": "{{host}}/artwork-technique",
 					"host": [
 						"{{host}}"
 					],
 					"path": [
-						"ArtWorkTecnique"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "createEmptyArtWorkTecnique3",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"Status code is 400\", function(){\r",
-							"    pm.response.to.have.status(400);\r",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"id\": 1,\r\n    \"name\": \"nombre1\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{host}}/ArtWorkTecnique",
-					"host": [
-						"{{host}}"
-					],
-					"path": [
-						"ArtWorkTecnique"
+						"artwork-technique"
 					]
 				}
 			},
@@ -225,18 +225,13 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{host}}/ArtWorkTecnique?id=1",
+					"raw": "{{host}}/artwork-technique/1",
 					"host": [
 						"{{host}}"
 					],
 					"path": [
-						"ArtWorkTecnique"
-					],
-					"query": [
-						{
-							"key": "id",
-							"value": "1"
-						}
+						"artwork-technique",
+						"1"
 					]
 				}
 			},
@@ -261,18 +256,13 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{host}}/ArtWorkTecnique?id=1",
+					"raw": "{{host}}/artwork-technique/0",
 					"host": [
 						"{{host}}"
 					],
 					"path": [
-						"ArtWorkTecnique"
-					],
-					"query": [
-						{
-							"key": "id",
-							"value": "1"
-						}
+						"artwork-technique",
+						"0"
 					]
 				}
 			},
@@ -287,6 +277,17 @@
 						"exec": [
 							"pm.test(\"Status code is 200\", function(){\r",
 							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Returns an array of ArtworkSurfaces\", function () {\r",
+							"    const response = pm.response.json();\r",
+							"\r",
+							"    pm.expect(Array.isArray(response)).to.be.true;\r",
+							"\r",
+							"    for (const as of response) {\r",
+							"        pm.expect(typeof(as.id)).to.eql(\"number\");\r",
+							"        pm.expect(typeof(as.name)).to.eql(\"string\");\r",
+							"    }\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -297,12 +298,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{host}}/ArtWorkTecnique",
+					"raw": "{{host}}/artwork-technique",
 					"host": [
 						"{{host}}"
 					],
 					"path": [
-						"ArtWorkTecnique"
+						"artwork-technique"
 					],
 					"query": [
 						{
@@ -335,7 +336,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"id\": 1,\r\n    \"bio\": \"nombreNuevo\"\r\n}",
+					"raw": "{\r\n    \"id\": 1,\r\n    \"bio\": \"NUEVO\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -343,12 +344,12 @@
 					}
 				},
 				"url": {
-					"raw": "{{host}}/crew",
+					"raw": "{{host}}/artwork-technique",
 					"host": [
 						"{{host}}"
 					],
 					"path": [
-						"crew"
+						"artwork-technique"
 					]
 				}
 			},
@@ -368,8 +369,7 @@
 							"pm.test(\"GET crew\"), function(){\r",
 							"    var jsonData = pm.response.json();\r",
 							"    pm.expect(jsonData.id).to.eq(1);\r",
-							"    pm.expect(jsonData.name).to.eq(\"nombreNuevo\");\r",
-							"    pm.expect(jsonData.bio).to.eq(\"biografia\");\r",
+							"    pm.expect(jsonData.name).to.eq(\"NUEVO\");\r",
 							"}"
 						],
 						"type": "text/javascript"
@@ -380,18 +380,82 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{host}}/crew?id=1",
+					"raw": "{{host}}/artwork-technique/1",
 					"host": [
 						"{{host}}"
 					],
 					"path": [
-						"crew"
+						"artwork-technique",
+						"1"
 					],
 					"query": [
 						{
 							"key": "id",
-							"value": "1"
+							"value": "1",
+							"disabled": true
 						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteArtWorkTechnique",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function(){\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/artwork-technique/5",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"artwork-technique",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteNonExistentArtWorkTechnique",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function(){\r",
+							"    pm.response.to.have.status(400);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/artwork-technique/5",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"artwork-technique",
+						"5"
 					]
 				}
 			},
